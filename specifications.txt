@@ -1,0 +1,34 @@
+HTML tags (10)
+Not html, head, body, title
+1. <ol>
+2. <ul>
+3. <li>
+4. <a>
+5. <h1>, <h2>, ...
+6. <hr>
+7. <br>
+8. <img>
+9. <u>
+10. <div>
+11. <table>
+12. <tr>
+13. <td>
+
+CSS properties (5)
+1. background-color
+2. color
+3. font-size
+4. font-weight
+5. line-height
+6. margin
+7. text-align
+8. font-family
+
+Usage of Bootstrap
+Bootstrap was used for a navigation bar at the top of the pages.
+
+Usage of JavaScript
+Javscript was used for the creation of trivia web pages.
+The javascript code decides whether the questions were answered correctly and keeps a score.
+When the users answers all the questions, a pop up window alert informs about the final score.
+The code also makes sure that the questions will be answered only once, before giving the final score.
