@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="../stylesq.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            /* Multiple choice code */
+            document.addEventListener('DOMContentLoaded', function() {
+                let answered = 0;
+                let score = 0;
+
+                const button_sets = 
+                [
+                    document.getElementById("answer1").querySelectorAll("button"),
+                    document.getElementById("answer2").querySelectorAll("button"),
+                    document.getElementById("answer3").querySelectorAll("button"),
+                    document.getElementById("answer4").querySelectorAll("button"),
+                    document.getElementById("answer5").querySelectorAll("button"),
+                    document.getElementById("answer6").querySelectorAll("button"),
+                    document.getElementById("answer7").querySelectorAll("button"),
+                    document.getElementById("answer8").querySelectorAll("button"),
+                    document.getElementById("answer9").querySelectorAll("button"),
+                    document.getElementById("answer10").querySelectorAll("button")    
+                ];
+
+                const answers = [
+                    "Όλα όσα αναφέρονται σαν απαντήσεις σε αυτήν την ερώτηση.", 
+                    "90-95% του κυτταρικού κύκλου.", 
+                    "2 κύκλους κυτταροδιαίρεσης.",
+                    "Τα ζεύγη των ομολόγων χρωμοσωμάτων.",
+                    "2 σπερμογονίων.",
+                    "Στο σημείο περιορισμού στο τέλος της φάσης G1.",
+                    "G0 και G1",
+                    "4 σπερματοζωάρια.",
+                    "Ενώνονται σε ένα σημείο που λέγεται κεντρομερίδιο.",
+                    "G1 της μεσόφασης."
+                ];
+
+                let checked = Array(10).fill(false);
+
+                for (let i = 1; i < button_sets.length + 1; i++)
+                {
+                    for (let button of button_sets[i - 1])
+                    {
+                        button.addEventListener('click', function(event) 
+                        {
+                            if (this.innerHTML == answers[i - 1] && checked[i - 1] == false)
+                            {
+                                this.style.backgroundColor = "green";
+                                document.getElementById(`Result${i}`).innerHTML = "Correct!";
+                                score++;
+                                answered++;
+                                checked[i - 1] = true;
+                            }
+                            else if (this.innerHTML != answers[i - 1] && checked[i - 1] == false)
+                            {
+                                this.style.backgroundColor = "red";
+                                document.getElementById(`Result${i}`).innerHTML = "Incorrect";
+                                answered++;
+                                checked[i - 1] = true;
+                            }
+
+                            // Check and display the score
+                            if (answered == 10) 
+                            {
+                                setTimeout(() => 
+                                {
+                                    let message;
+                                    if (score == 10) message = "Perfect! Your final score is: " + score + "/" + answered;
+                                    else if (score == 9) message = "Very Good! Your final score is " + score + "/" + answered;
+                                    else if (score == 8) message = "Very Good! Your final score is " + score + "/" + answered;
+                                    else if (score == 7 || score == 6) message = "Good! Your final score is " + score + "/" + answered;
+                                    else if (score == 5) message = "Passed! Your final score is " + score + "/" + answered;
+                                    else if (score < 5 && score >= 0) message = "Ooops Failed! Try again! Your final score is " + score + "/" + answered;
+                                    else message = "Invalid Score!";
+
+                                    window.alert(message);
+                                }, 100);
+                            }
+                        });
+                    }
+                }
+            });
+        </script>
+    </head>
+    
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navigation</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/index.html">Home page</a>
+                        <a class="nav-link" href="/studies.html">Studies</a>
+                        <a class="nav-link" href="/experience.html">Professional Experience</a>
+                        <a class="nav-link" href="/interests.html">Personal Interests</a>
+                        <a class="nav-link" href="/projects.html">Projects</a>
+                        <a class="nav-link" href="/lessons.html">Lessons</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Μέρος 1ο: Ερωτήσεις πολλαπλής επιλογής: </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                 <h3> <b style="color: grey">I.</b>Σκοπός της μεσόφασης είναι:</h3>
+                 <ol id="answer1">
+                    <li><button>Ο διπλασιασμός του γενετικού υλικού.</button></li> <br>
+                    <li><button>Η σύνθεση RNA και πρωτεϊνών, καθώς και ο σχηματισμός νέων κυτταρικών οργανιδίων.</button></li> <br>
+                    <li><button>Η ενεργειακή προετοιμασία του κυττάρου για να γίνει η κυτταροδιαίρεση.</button></li> <br>
+                    <li><button>Όλα όσα αναφέρονται σαν απαντήσεις σε αυτήν την ερώτηση.</button></li> <br>
+                 </ol>
+                 <p id="Result1"></p>
+
+                 <h3> <b style="color: grey">II.</b>Η μεσόφαση καταλαμβάνει ένα μεγάλο μέρος της ζωής του κυττάρου. Συγκεκριμένα:</h3>
+                 <ol id="answer2">
+                    <li><button>90-95% του κυτταρικού κύκλου.</button></li> <br>
+                    <li><button>20% του κυτταρικού κύκλου.</button></li> <br>
+                    <li><button>50% του κυτταρικού κύκλου.</button></li> <br>
+                    <li><button>10-15% του κυτταρικού κύκλου.</button></li> <br>
+                 </ol>
+                 <p id="Result2"></p>
+
+                 <h3> <b style="color: grey">III.</b>Η μείωση αποτελείται από:</h3>
+                 <ol id="answer3">
+                    <li><button>4 κύκλους κυτταροδιαίρεσης.</button></li> <br>
+                    <li><button>2 κύκλους κυτταροδιαίρεσης.</button></li> <br>
+                    <li><button>3 κύκλους κυτταροδιαίρεσης.</button></li> <br>
+                    <li><button>1 κύκλο κυτταροδιαίρεσης.</button></li> <br>
+                 </ol>
+                 <p id="Result3"></p>
+
+                 <h3> <b style="color: grey">IV.</b>Κατά την Ανάφαση Ι της 1ης μειωτικής διαίρεσης αποχωρίζονται:</h3>
+                 <ol id="answer4">
+                    <li><button>Τα ζεύγη των ομολόγων χρωμοσωμάτων.</button></li> <br>
+                    <li><button>Οι χρωματίδες.</button></li> <br>
+                    <li><button>Τα δύο θυγατρικά κύτταρα.</button></li> <br>
+                    <li><button>Οι γενετικές θέσεις.</button></li> <br>
+                 </ol>
+                 <p id="Result4"></p>
+
+                 <h3> <b style="color: grey">V.</b>Η μίτωση ενός σπερμογονίου θα οδηγήσει στη δημιουργία:</h3>
+                 <ol id="answer5">
+                    <li><button>4 σπερματοζωαρίων.</button></li> <br>
+                    <li><button>2 σπερματοζωαρίων.</button></li> <br>
+                    <li><button>2 σπερμογονίων.</button></li> <br>
+                    <li><button>4 σπερμογονίων.</button></li> <br>
+                 </ol>
+                 <p id="Result5"></p>
+
+                 <h3> <b style="color: grey">VI.</b>Η ρύθμιση του κυτταρικού κύκλου επιτελείται στο:</h3>
+                 <ol id="answer6">
+                    <li><button>Σημείο μετάβασης από τη φάση S στη φάση G2.</button></li> <br>
+                    <li><button>Στο σημείο περιορισμού στο τέλος της φάσης G1.</button></li> <br>
+                    <li><button>Στη φάση G2.</button></li> <br>
+                    <li><button>Σημείο έναρξης της φάσης Μ.</button></li> <br>
+                 </ol>
+                 <p id="Result6"></p>
+
+                 <h3> <b style="color: grey">VII.</b>Επιλέξτε ποιες από τις παρακάτω φάσεις της ζωής του κυττάρου έχουν χρονική διάρκεια που επηρεάζεται από τις συνθήκες του περιβάλλοντος:</h3>
+                 <ol id="answer7">
+                    <li><button>G1 και S</button></li> <br>
+                    <li><button>G1 και G2</button></li> <br>
+                    <li><button>G0 και G1</button></li> <br>
+                    <li><button>G2 και M</button></li> <br>
+                 </ol>
+                 <p id="Result7"></p>
+
+                 <h3> <b style="color: grey">VIII.</b>Στο τέλος της μείωσης ενός σπερμογονίου προκύπτουν:</h3>
+                 <ol id="answer8">
+                    <li><button>4 σπερμογόνια.</button></li> <br>
+                    <li><button>2 σπερμογόνια.</button></li> <br>
+                    <li><button>4 σπερματοζωάρια.</button></li> <br>
+                    <li><button>2 σπερματοζωάρια.</button></li> <br>
+                 </ol>
+                 <p id="Result8"></p>
+
+                 <h3> <b style="color: grey">IX.</b>Οι αδελφές χρωματίδες κατά τη μετάφαση της μείωσης Ι:</h3>
+                 <ol id="answer9">
+                    <li><button>Ενώνονται σε ένα σημείο που λέγεται κεντρομερίδιο.</button></li> <br>
+                    <li><button>Δεν είναι ενωμένες.</button></li> <br>
+                    <li><button>Είναι τυλιγμένες γύρω από το κεντρομερίδιο.</button></li> <br>
+                    <li><button>Καμία από τις δοθείσες απαντήσεις δεν είναι σωστή.</button></li> <br>
+                 </ol>
+                 <p id="Result9"></p>
+
+                 <h3> <b style="color: grey">X.</b>Ένα χρωμόσωμα αποτελείται από ένα δίκλωνο μόριο DNA, όταν το κύτταρο βρίσκεται στη φάση:</h3>
+                 <ol id="answer10">
+                    <li><button>M.</button></li> <br>
+                    <li><button>S της μεσόφασης.</button></li> <br>
+                    <li><button>G2 της μεσόφασης.</button></li> <br>
+                    <li><button>G1 της μεσόφασης.</button></li> <br>
+                 </ol>
+                 <p id="Result10"></p>
+            </div>
+        </div>
+    </body>
+</html>
