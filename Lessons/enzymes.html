@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="../stylesq.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            /* Multiple choice code */
+            document.addEventListener('DOMContentLoaded', function() {
+                let answered = 0;
+                let score = 0;
+
+                const button_sets = 
+                [
+                    document.getElementById("answer1").querySelectorAll("button"),
+                    document.getElementById("answer2").querySelectorAll("button"),
+                    document.getElementById("answer3").querySelectorAll("button"),
+                    document.getElementById("answer4").querySelectorAll("button"),
+                    document.getElementById("answer5").querySelectorAll("button"),
+                    document.getElementById("answer6").querySelectorAll("button"),
+                    document.getElementById("answer7").querySelectorAll("button"),
+                    document.getElementById("answer8").querySelectorAll("button"),
+                    document.getElementById("answer9").querySelectorAll("button"),
+                    document.getElementById("answer10").querySelectorAll("button")    
+                ];
+
+                const answers = [
+                    "Το Ενεργό Κέντρο.", 
+                    "2", 
+                    "Τα Υποστρώματα.",
+                    "Φωσφοδιεστερικών δεσμών.",
+                    "Όλων των αναφερθέντων.",
+                    "Συνένζυμα.",
+                    "Μειώνεται η ενέργεια ενεργοποίησης.",
+                    "64 μήνες.",
+                    "να φτάσει γρηγορότερα στη χημική ισορροπία.",
+                    "του ενζύμου στόχου."
+                ];
+
+                let checked = Array(10).fill(false);
+
+                for (let i = 1; i < button_sets.length + 1; i++)
+                {
+                    for (let button of button_sets[i - 1])
+                    {
+                        button.addEventListener('click', function(event) 
+                        {
+                            if (this.innerHTML == answers[i - 1] && checked[i - 1] == false)
+                            {
+                                this.style.backgroundColor = "green";
+                                document.getElementById(`Result${i}`).innerHTML = "Correct!";
+                                score++;
+                                answered++;
+                                checked[i - 1] = true;
+                            }
+                            else if (this.innerHTML != answers[i - 1] && checked[i - 1] == false)
+                            {
+                                this.style.backgroundColor = "red";
+                                document.getElementById(`Result${i}`).innerHTML = "Incorrect";
+                                answered++;
+                                checked[i - 1] = true;
+                            }
+
+                            // Check and display the score
+                            if (answered == 10) 
+                            {
+                                setTimeout(() => 
+                                {
+                                    let message;
+                                    if (score == 10) message = "Perfect! Your final score is: " + score + "/" + answered;
+                                    else if (score == 9) message = "Very Good! Your final score is " + score + "/" + answered;
+                                    else if (score == 8) message = "Very Good! Your final score is " + score + "/" + answered;
+                                    else if (score == 7 || score == 6) message = "Good! Your final score is " + score + "/" + answered;
+                                    else if (score == 5) message = "Passed! Your final score is " + score + "/" + answered;
+                                    else if (score < 5 && score >= 0) message = "Ooops Failed! Try again! Your final score is " + score + "/" + answered;
+                                    else message = "Invalid Score!";
+
+                                    window.alert(message);
+                                }, 100);
+                            }
+                        });
+                    }
+                }
+            });
+        </script>
+    </head>
+    
+    <body>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Navigation</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link active" aria-current="page" href="/index.html">Home page</a>
+                        <a class="nav-link" href="/studies.html">Studies</a>
+                        <a class="nav-link" href="/experience.html">Professional Experience</a>
+                        <a class="nav-link" href="/interests.html">Personal Interests</a>
+                        <a class="nav-link" href="/projects.html">Projects</a>
+                        <a class="nav-link" href="/lessons.html">Lessons</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Μέρος 1ο: Ερωτήσεις πολλαπλής επιλογής: </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                 <h3> <b style="color: grey">I. </b>Ποια περιοχή του ενζύμου είναι περισσότερο υπεύθυνη για τη δραστικότητά του;</h3>
+                 <ol id="answer1">
+                    <li><button>Το Ενεργό Κέντρο.</button></li> <br>
+                    <li><button>Η Αλλοστερική Θέση Ρύθμισης.</button></li> <br>
+                    <li><button>Το Πρωτεϊνικό Υπόβαθρο.</button></li> <br>
+                    <li><button>Καμιά από τις παραπάνω.</button></li> <br>
+                 </ol>
+                 <p id="Result1"></p>
+
+                 <h3> <b style="color: grey">II. </b>Πόσα είδη λειτουργικών περιοχών περιέχει το ενεργό κέντρο του ενζύμου;</h3>
+                 <ol id="answer2">
+                    <li><button>1</button></li> <br>
+                    <li><button>2</button></li> <br>
+                    <li><button>3</button></li> <br>
+                    <li><button>4</button></li> <br>
+                 </ol>
+                 <p id="Result2"></p>
+
+                 <h3> <b style="color: grey">III. </b>Στις Θέσεις Δέσμευσης του Ενεργού Κέντρου του Ενζύμου εισέρχονται:</h3>
+                 <ol id="answer3">
+                    <li><button>Οι κατάλληλες Ορμόνες.</button></li> <br>
+                    <li><button>Οι καταλύτες της αντίδρασης.</button></li> <br>
+                    <li><button>Τα προϊόντα της αντίδρασης.</button></li> <br>
+                    <li><button>Τα Υποστρώματα.</button></li> <br>
+                 </ol>
+                 <p id="Result3"></p>
+
+                 <h3> <b style="color: grey">IV. </b>Οι Περιοριστικές Ενδονουκλεάσες προκαλούν τη διάσπαση:</h3>
+                 <ol id="answer4">
+                    <li><button>Πεπτιδικών δεσμών.</button></li> <br>
+                    <li><button>Γλυκοζιτικών δεσμών.</button></li> <br>
+                    <li><button>Φωσφοδιεστερικών δεσμών.</button></li> <br>
+                    <li><button>Δισουλφιδικών δεσμών.</button></li> <br>
+                 </ol>
+                 <p id="Result4"></p>
+
+                 <h3> <b style="color: grey">V. </b>Η δραστικότητα των Ενζύμων επηρεάζεται από παράγοντες όπως:</h3>
+                 <ol id="answer5">
+                    <li><button>Η θερμοκρασία.</button></li> <br>
+                    <li><button>Το pH.</button></li> <br>
+                    <li><button>Η παρουσία Αναστολέων.</button></li> <br>
+                    <li><button>Όλων των αναφερθέντων.</button></li> <br>
+                 </ol>
+                 <p id="Result5"></p>
+
+                 <h3> <b style="color: grey">VI. </b>Τα μικρά μόρια που βοηθούν τα ένζυμα λέγονται:</h3>
+                 <ol id="answer6">
+                    <li><button>Συνένζυμα.</button></li> <br>
+                    <li><button>Αποένζυμα.</button></li> <br>
+                    <li><button>Ολοένζυμα.</button></li> <br>
+                    <li><button>Υποστρώματα.</button></li> <br>
+                 </ol>
+                 <p id="Result6"></p>
+
+                 <h3> <b style="color: grey">VII. </b>Όταν μια εξώθερμη αντίδραση γίνεται με τη βοήθεια ενζύμου:</h3>
+                 <ol id="answer7">
+                    <li><button>Μειώνεται η ενέργεια που εκλύεται.</button></li> <br>
+                    <li><button>Μειώνεται η ενέργεια ενεργοποίησης.</button></li> <br>
+                    <li><button>Αυξάνεται η ενέργεια που εκλύεται.</button></li> <br>
+                    <li><button>Αυξάνεται η ενέργεια ενεργοποίησης.</button></li> <br>
+                 </ol>
+                 <p id="Result7"></p>
+
+                 <h3> <b style="color: grey">VIII. </b>Μια αυθόρμητη βιοχημική αντίδραση διαρκεί 2 min παρουσία ενζύμου. Πόσο θα διαρκούσε αν δε γινόταν ενζυμικά;</h3>
+                 <ol id="answer8">
+                    <li><button>16 μήνες.</button></li> <br>
+                    <li><button>32 μήνες.</button></li> <br>
+                    <li><button>64 μήνες.</button></li> <br>
+                    <li><button>128 μήνες.</button></li> <br>
+                 </ol>
+                 <p id="Result8"></p>
+
+                 <h3> <b style="color: grey">IX. </b>Η παρουσία του κατάλληλου ενζύμου οδηγεί μια χημική αντίδραση:</h3>
+                 <ol id="answer9">
+                    <li><button>να φτάσει γρηγορότερα στη χημική ισορροπία.</button></li> <br>
+                    <li><button>να γίνει μονόδρομη, άρα πολύ γρήγορη.</button></li> <br>
+                    <li><button>στη μετατόπιση της χημικής της ισορροπίας προς την πλευρά των προϊόντων, ώστε να γίνει πιο αποδοτική.</button></li> <br>
+                    <li><button>σε μεγαλύτερη ενεργειακή απόδοση.</button></li> <br>
+                 </ol>
+                 <p id="Result9"></p>
+
+                 <h3> <b style="color: grey">X. </b>Τα αντιβιοτικά εμποδίζουν τη δράση:</h3>
+                 <ol id="answer10">
+                    <li><button>των αντιδρώντων στόχων.</button></li> <br>
+                    <li><button>των υποστρωμάτων στόχων.</button></li> <br>
+                    <li><button>των προϊόντων στόχων.</button></li> <br>
+                    <li><button>του ενζύμου στόχου.</button></li> <br>
+                 </ol>
+                 <p id="Result10"></p>
+            </div>
+        </div>
+    </body>
+</html>
